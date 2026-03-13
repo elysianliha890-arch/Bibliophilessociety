@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Book Club Voting</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f6f4ff;
+text-align:center;
+padding:40px;
+}
+
+.book{
+margin:10px;
+padding:10px;
+background:white;
+display:inline-block;
+border-radius:8px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+button{
+background:#7c6cff;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.cart{
+margin-top:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Select Books for This Month 📚</h1>
+
+<div class="book">
+A Thousand Splendid Suns
+<br>
+<button onclick="addBook('A Thousand Splendid Suns')">Add</button>
+</div>
+
+<div class="book">
+The Midnight Library
+<br>
+<button onclick="addBook('The Midnight Library')">Add</button>
+</div>
+
+<div class="book">
+The Song of Achilles
+<br>
+<button onclick="addBook('The Song of Achilles')">Add</button>
+</div>
+
+<div class="book">
+The Seven Husbands of Evelyn Hugo
+<br>
+<button onclick="addBook('The Seven Husbands of Evelyn Hugo')">Add</button>
+</div>
+
+<div class="cart">
+
+<h2>Your Cart</h2>
+
+<ul id="cart"></ul>
+
+<button onclick="submitVote()">Submit Vote</button>
+
+</div>
+
+<script>
+
+let selectedBooks = [];
+
+function addBook(book){
+
+selectedBooks.push(book);
+
+let list = document.getElementById("cart");
+
+let item = document.createElement("li");
+
+item.innerText = book;
+
+list.appendChild(item);
+
+}
+
+function submitVote(){
+
+let name = prompt("Enter your name");
+
+fetch("mailto:elysianliha890@gmail.com,{
+
+method:"POST",
+
+body: JSON.stringify({
+name:name,
+books:selectedBooks.join(", ")
+})
+
+}).then(()=>{
+
+alert("Your vote has been submitted!");
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
